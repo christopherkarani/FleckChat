@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Delegate MEthod that handles Interaction with Message Label Detectors for url, phoneNumber, Address and Date
 public protocol MessageLabelDelegate: AnyObject {
     
     func didSelectAddress(_ addressComponents: [String: String])
@@ -21,7 +22,6 @@ public protocol MessageLabelDelegate: AnyObject {
 }
 
 public extension MessageLabelDelegate {
-    
     func didSelectAddress(_ addressComponents: [String: String]) {}
     
     func didSelectDate(_ date: Date) {}

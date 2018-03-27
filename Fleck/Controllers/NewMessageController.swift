@@ -40,11 +40,8 @@ class NewMessageController: UITableViewController {
     }
     private func setupDictionary(withSnapshot snapshot: (DataSnapshot)) {
         if let dictionary = snapshot.value as? [String: AnyObject] {
-            var user = LocalUser()
+            var user = LocalUser(dictionary)
             user.id = snapshot.key
-            user.name = dictionary["name"] as? String
-            user.email = dictionary["email"] as? String
-            user.profileImageURL = dictionary["profileImageUrl"] as? String
             self.users.append(user)
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()

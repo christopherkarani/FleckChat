@@ -14,8 +14,11 @@
 		3C92DCE62063A2C80096C91F /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C92DCE52063A2C80096C91F /* MessageLabel.swift */; };
 		3C92DCE82063A3020096C91F /* Date_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C92DCE72063A3020096C91F /* Date_Ext.swift */; };
 		3C92DCEA2063A3750096C91F /* UIImageView_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C92DCE92063A3750096C91F /* UIImageView_Ext.swift */; };
-		3C92DCEC2063D3FC0096C91F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C92DCEB2063D3FC0096C91F /* GoogleService-Info.plist */; };
-		BB11DDF81F9E395F004A2D2E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11DDF71F9E395F004A2D2E /* LoginController.swift */; };
+		3CADF47C206A4E4C00595778 /* MessageObjTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADF47B206A4E4C00595778 /* MessageObjTests.swift */; };
+		3CADF484206A74A800595778 /* MessageLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADF483206A74A800595778 /* MessageLabelTests.swift */; };
+		3CADF486206A7F3F00595778 /* LocalUserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADF485206A7F3F00595778 /* LocalUserTest.swift */; };
+		3CBCD5E620659FC5005D1448 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CBCD5E520659FC5005D1448 /* GoogleService-Info.plist */; };
+		BB11DDF81F9E395F004A2D2E /* LoginRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11DDF71F9E395F004A2D2E /* LoginRegisterController.swift */; };
 		BB11DE001F9E5C1A004A2D2E /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11DDFF1F9E5C1A004A2D2E /* ChatController.swift */; };
 		BB11DE021F9E5C63004A2D2E /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11DE011F9E5C63004A2D2E /* ConversationsController.swift */; };
 		BB11DE051F9E67A9004A2D2E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11DE041F9E67A9004A2D2E /* Theme.swift */; };
@@ -32,9 +35,21 @@
 		BBD0D2EB1F9BB51400D996A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBD0D2EA1F9BB51400D996A2 /* Assets.xcassets */; };
 		BBD0D2EE1F9BB51400D996A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBD0D2EC1F9BB51400D996A2 /* LaunchScreen.storyboard */; };
 		C28FF4C6EC26175CC32BABCC /* Pods_Fleck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF5CDCA7F3928D485FFF4A6 /* Pods_Fleck.framework */; };
+		CADE6943E18FCD76D666F43E /* Pods_FleckUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A30FEAA380AED5CED9F4EE2 /* Pods_FleckUnitTests.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3CADF47E206A4E4C00595778 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BBD0D2D81F9BB51300D996A2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BBD0D2DF1F9BB51400D996A2;
+			remoteInfo = Fleck;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		2724F38C8DB68C47E7EB1A08 /* Pods-MessageTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessageTest/Pods-MessageTest.debug.xcconfig"; sourceTree = "<group>"; };
 		3AF5CDCA7F3928D485FFF4A6 /* Pods_Fleck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fleck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C42BF70206188F0008EFEB2 /* DetectorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectorType.swift; sourceTree = "<group>"; };
 		3C42BF7320618956008EFEB2 /* MessageLabelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabelDelegate.swift; sourceTree = "<group>"; };
@@ -43,9 +58,20 @@
 		3C92DCE52063A2C80096C91F /* MessageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabel.swift; sourceTree = "<group>"; };
 		3C92DCE72063A3020096C91F /* Date_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_Ext.swift; sourceTree = "<group>"; };
 		3C92DCE92063A3750096C91F /* UIImageView_Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView_Ext.swift; sourceTree = "<group>"; };
-		3C92DCEB2063D3FC0096C91F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3CADF479206A4E4C00595778 /* FleckUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FleckUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CADF47B206A4E4C00595778 /* MessageObjTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageObjTests.swift; sourceTree = "<group>"; };
+		3CADF47D206A4E4C00595778 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CADF483206A74A800595778 /* MessageLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabelTests.swift; sourceTree = "<group>"; };
+		3CADF485206A7F3F00595778 /* LocalUserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserTest.swift; sourceTree = "<group>"; };
+		3CBCD5E420659E9B005D1448 /* Fleck.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleck.entitlements; sourceTree = "<group>"; };
+		3CBCD5E520659FC5005D1448 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		49A11F1F61DCBF574D5E8449 /* Pods-FleckUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FleckUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FleckUnitTests/Pods-FleckUnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		4A30FEAA380AED5CED9F4EE2 /* Pods_FleckUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FleckUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		510C374F1E17962D4F13A11B /* Pods-MessageTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessageTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessageTest/Pods-MessageTest.release.xcconfig"; sourceTree = "<group>"; };
+		5810F65DFB32D5CF6C33349A /* Pods_MessageTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessageTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86684BF9ECCDBC74E8CEECF8 /* Pods-Fleck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fleck.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fleck/Pods-Fleck.release.xcconfig"; sourceTree = "<group>"; };
-		BB11DDF71F9E395F004A2D2E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		A656E1805248D85CF90F45AF /* Pods-FleckUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FleckUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FleckUnitTests/Pods-FleckUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BB11DDF71F9E395F004A2D2E /* LoginRegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterController.swift; sourceTree = "<group>"; };
 		BB11DDFF1F9E5C1A004A2D2E /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		BB11DE011F9E5C63004A2D2E /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
 		BB11DE041F9E67A9004A2D2E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -67,6 +93,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3CADF476206A4E4C00595778 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CADE6943E18FCD76D666F43E /* Pods_FleckUnitTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BBD0D2DD1F9BB51400D996A2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -82,8 +116,18 @@
 			isa = PBXGroup;
 			children = (
 				3AF5CDCA7F3928D485FFF4A6 /* Pods_Fleck.framework */,
+				5810F65DFB32D5CF6C33349A /* Pods_MessageTest.framework */,
+				4A30FEAA380AED5CED9F4EE2 /* Pods_FleckUnitTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3C367D0A206558F900F4CDD2 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				3CBCD5E520659FC5005D1448 /* GoogleService-Info.plist */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		3C42BF7220618940008EFEB2 /* Protocols */ = {
@@ -100,8 +144,20 @@
 				3C42BF76206191F4008EFEB2 /* UIColor_Ext.swift */,
 				3C92DCE72063A3020096C91F /* Date_Ext.swift */,
 				3C92DCE92063A3750096C91F /* UIImageView_Ext.swift */,
+				BB1864831FA2727400CAC6AD /* LoginController+Handlers.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3CADF47A206A4E4C00595778 /* FleckUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				3CADF485206A7F3F00595778 /* LocalUserTest.swift */,
+				3CADF483206A74A800595778 /* MessageLabelTests.swift */,
+				3CADF47B206A4E4C00595778 /* MessageObjTests.swift */,
+				3CADF47D206A4E4C00595778 /* Info.plist */,
+			);
+			path = FleckUnitTests;
 			sourceTree = "<group>";
 		};
 		A5A5596BBFADD55953CF6836 /* Pods */ = {
@@ -109,23 +165,18 @@
 			children = (
 				E171F67C6886D78CE2AB86B7 /* Pods-Fleck.debug.xcconfig */,
 				86684BF9ECCDBC74E8CEECF8 /* Pods-Fleck.release.xcconfig */,
+				2724F38C8DB68C47E7EB1A08 /* Pods-MessageTest.debug.xcconfig */,
+				510C374F1E17962D4F13A11B /* Pods-MessageTest.release.xcconfig */,
+				A656E1805248D85CF90F45AF /* Pods-FleckUnitTests.debug.xcconfig */,
+				49A11F1F61DCBF574D5E8449 /* Pods-FleckUnitTests.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		BB06642A1F9F2F3A00420DDA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				3C92DCEB2063D3FC0096C91F /* GoogleService-Info.plist */,
-			);
-			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		BB11DE031F9E6789004A2D2E /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				BB11DE041F9E67A9004A2D2E /* Theme.swift */,
-				BB1864831FA2727400CAC6AD /* LoginController+Handlers.swift */,
 				BB18458F1FAD11D000DA1D9E /* FirebaseNode.swift */,
 				3C42BF70206188F0008EFEB2 /* DetectorType.swift */,
 			);
@@ -157,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				BBD0D2E21F9BB51400D996A2 /* Fleck */,
+				3CADF47A206A4E4C00595778 /* FleckUnitTests */,
 				BBD0D2E11F9BB51400D996A2 /* Products */,
 				A5A5596BBFADD55953CF6836 /* Pods */,
 				2491C7EDECD592443891DC2A /* Frameworks */,
@@ -167,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				BBD0D2E01F9BB51400D996A2 /* Fleck.app */,
+				3CADF479206A4E4C00595778 /* FleckUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,11 +227,12 @@
 		BBD0D2E21F9BB51400D996A2 /* Fleck */ = {
 			isa = PBXGroup;
 			children = (
+				3CBCD5E420659E9B005D1448 /* Fleck.entitlements */,
+				3C367D0A206558F900F4CDD2 /* SupportingFiles */,
 				3C42BF75206191E6008EFEB2 /* Extensions */,
 				3C42BF7220618940008EFEB2 /* Protocols */,
 				BB1864801FA24F1700CAC6AD /* View */,
 				BB18647D1FA2292C00CAC6AD /* Model */,
-				BB06642A1F9F2F3A00420DDA /* Supporting Files */,
 				BB11DE031F9E6789004A2D2E /* Helper */,
 				BBD0D2F51F9BBF1200D996A2 /* Controllers */,
 				BBD0D2E31F9BB51400D996A2 /* AppDelegate.swift */,
@@ -193,7 +247,7 @@
 		BBD0D2F51F9BBF1200D996A2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BB11DDF71F9E395F004A2D2E /* LoginController.swift */,
+				BB11DDF71F9E395F004A2D2E /* LoginRegisterController.swift */,
 				BB11DDFF1F9E5C1A004A2D2E /* ChatController.swift */,
 				BB11DE011F9E5C63004A2D2E /* ConversationsController.swift */,
 				BB18647B1FA21DBB00CAC6AD /* NewMessageController.swift */,
@@ -204,6 +258,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3CADF478206A4E4C00595778 /* FleckUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CADF480206A4E4C00595778 /* Build configuration list for PBXNativeTarget "FleckUnitTests" */;
+			buildPhases = (
+				0490853FD9C292C11AB13FDA /* [CP] Check Pods Manifest.lock */,
+				3CADF475206A4E4C00595778 /* Sources */,
+				3CADF476206A4E4C00595778 /* Frameworks */,
+				3CADF477206A4E4C00595778 /* Resources */,
+				E9A8595CEB8E706B7CFE3F58 /* [CP] Embed Pods Frameworks */,
+				36E8E578AE66552E19E2FAE2 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3CADF47F206A4E4C00595778 /* PBXTargetDependency */,
+			);
+			name = FleckUnitTests;
+			productName = FleckUnitTests;
+			productReference = 3CADF479206A4E4C00595778 /* FleckUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		BBD0D2DF1F9BB51400D996A2 /* Fleck */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BBD0D2F21F9BB51400D996A2 /* Build configuration list for PBXNativeTarget "Fleck" */;
@@ -230,13 +305,23 @@
 		BBD0D2D81F9BB51300D996A2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Neptune;
 				TargetAttributes = {
+					3CADF478206A4E4C00595778 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = BBD0D2DF1F9BB51400D996A2;
+					};
 					BBD0D2DF1F9BB51400D996A2 = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -254,17 +339,25 @@
 			projectRoot = "";
 			targets = (
 				BBD0D2DF1F9BB51400D996A2 /* Fleck */,
+				3CADF478206A4E4C00595778 /* FleckUnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3CADF477206A4E4C00595778 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BBD0D2DE1F9BB51400D996A2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				BBD0D2EE1F9BB51400D996A2 /* LaunchScreen.storyboard in Resources */,
-				3C92DCEC2063D3FC0096C91F /* GoogleService-Info.plist in Resources */,
+				3CBCD5E620659FC5005D1448 /* GoogleService-Info.plist in Resources */,
 				BBD0D2EB1F9BB51400D996A2 /* Assets.xcassets in Resources */,
 				BBD0D2E91F9BB51400D996A2 /* Main.storyboard in Resources */,
 			);
@@ -273,6 +366,39 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0490853FD9C292C11AB13FDA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FleckUnitTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		36E8E578AE66552E19E2FAE2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FleckUnitTests/Pods-FleckUnitTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3C8547824078C47655499D3B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -299,7 +425,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Fleck/Pods-Fleck-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-f0850809/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -334,9 +460,39 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fleck/Pods-Fleck-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E9A8595CEB8E706B7CFE3F58 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FleckUnitTests/Pods-FleckUnitTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-NSData+zlib/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FleckUnitTests/Pods-FleckUnitTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3CADF475206A4E4C00595778 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CADF484206A74A800595778 /* MessageLabelTests.swift in Sources */,
+				3CADF47C206A4E4C00595778 /* MessageObjTests.swift in Sources */,
+				3CADF486206A7F3F00595778 /* LocalUserTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BBD0D2DC1F9BB51400D996A2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -346,7 +502,7 @@
 				3C92DCE62063A2C80096C91F /* MessageLabel.swift in Sources */,
 				3C92DCE82063A3020096C91F /* Date_Ext.swift in Sources */,
 				BB1864841FA2727500CAC6AD /* LoginController+Handlers.swift in Sources */,
-				BB11DDF81F9E395F004A2D2E /* LoginController.swift in Sources */,
+				BB11DDF81F9E395F004A2D2E /* LoginRegisterController.swift in Sources */,
 				BBB909DC1FA89C3600A790B5 /* ChatMessageCell.swift in Sources */,
 				3C92DCEA2063A3750096C91F /* UIImageView_Ext.swift in Sources */,
 				BB1845901FAD11D000DA1D9E /* FirebaseNode.swift in Sources */,
@@ -365,6 +521,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3CADF47F206A4E4C00595778 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BBD0D2DF1F9BB51400D996A2 /* Fleck */;
+			targetProxy = 3CADF47E206A4E4C00595778 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BBD0D2E71F9BB51400D996A2 /* Main.storyboard */ = {
@@ -386,6 +550,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3CADF481206A4E4C00595778 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A656E1805248D85CF90F45AF /* Pods-FleckUnitTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GCZWD433AN;
+				INFOPLIST_FILE = FleckUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = neptune.FleckUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fleck.app/Fleck";
+			};
+			name = Debug;
+		};
+		3CADF482206A4E4C00595778 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49A11F1F61DCBF574D5E8449 /* Pods-FleckUnitTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GCZWD433AN;
+				INFOPLIST_FILE = FleckUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = neptune.FleckUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fleck.app/Fleck";
+			};
+			name = Release;
+		};
 		BBD0D2F01F9BB51400D996A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -498,9 +698,11 @@
 			baseConfigurationReference = E171F67C6886D78CE2AB86B7 /* Pods-Fleck.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Fleck/Fleck.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GCZWD433AN;
+				"HEADER_SEARCH_PATHS[arch=*]" = "${PODS_ROOT}/Firebase/Core/Sources";
 				INFOPLIST_FILE = Fleck/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -517,6 +719,7 @@
 			baseConfigurationReference = 86684BF9ECCDBC74E8CEECF8 /* Pods-Fleck.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Fleck/Fleck.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GCZWD433AN;
@@ -534,6 +737,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3CADF480206A4E4C00595778 /* Build configuration list for PBXNativeTarget "FleckUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CADF481206A4E4C00595778 /* Debug */,
+				3CADF482206A4E4C00595778 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BBD0D2DB1F9BB51300D996A2 /* Build configuration list for PBXProject "Fleck" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

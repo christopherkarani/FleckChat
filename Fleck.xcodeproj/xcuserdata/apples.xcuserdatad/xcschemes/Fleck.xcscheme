@@ -29,6 +29,36 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3CADF43E206A404000595778"
+               BuildableName = "Test.xctest"
+               BlueprintName = "Test"
+               ReferencedContainer = "container:Fleck.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3CADF46A206A4E3200595778"
+               BuildableName = "FleckTests.xctest"
+               BlueprintName = "FleckTests"
+               ReferencedContainer = "container:Fleck.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3CADF478206A4E4C00595778"
+               BuildableName = "FleckUnitTests.xctest"
+               BlueprintName = "FleckUnitTests"
+               ReferencedContainer = "container:Fleck.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

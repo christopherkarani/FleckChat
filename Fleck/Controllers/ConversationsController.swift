@@ -20,6 +20,7 @@ protocol ConversationsControllerDelegate: class {
 
 
 class ConversationsController: UITableViewController, ConversationsControllerDelegate {
+    
     private let eventStore = EKEventStore()
     var messages = [Message]()
     var messagesDictionary = [String: Message]()
@@ -30,15 +31,16 @@ class ConversationsController: UITableViewController, ConversationsControllerDel
     let layout = UICollectionViewFlowLayout()
     var chatController : ChatController?
     var newMessageController : NewMessageController?
-    var loginController : LoginViewController?
+    var loginController : LoginRegisterViewController?
     var isLoggedIn = false
     
     //MARK: VIEWDIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        checkIfUserIsLoggedIn()
     }
-    
+
  
     
     func setupTableView() {
@@ -48,11 +50,14 @@ class ConversationsController: UITableViewController, ConversationsControllerDel
     }
     
     func observeUserMessages() {
-        let uid = FirebaseNode.currentUserUID
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
         let ref = FirebaseNode.shared.userMessagesNode().child(uid)
         ref.observe(.childAdded) {[unowned self] (snapshot) in
             let userID = snapshot.key
-            FirebaseNode.shared.userMessagesNode().child(uid).child(userID).observe(.childAdded, with: { (snapshot) in
+            FirebaseNode.shared.userMessagesNode().child(uid).child(userID).observe(.childAdded, with: {[unowned self] (snapshot) in
                 let messageID = snapshot.key
                 self.fetchMessage(withMessageID: messageID)
             })
@@ -82,7 +87,8 @@ class ConversationsController: UITableViewController, ConversationsControllerDel
         let messagesReferance = FirebaseNode.shared.messagesNode(toChild: messageID)
         messagesReferance.observeSingleEvent(of: .value, with: { [unowned self] (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
-                let message = Message(dictionary: dictionary)                //self.messages.append(message)
+                let message = Message(dictionary: dictionary)
+                //self.messages.append(message)
                 if let chatPartnerID = message.chatPartnerID() {
                     self.messagesDictionary[chatPartnerID] = message
                 }
@@ -126,7 +132,6 @@ class ConversationsController: UITableViewController, ConversationsControllerDel
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         checkCalendarAuthorizationStatus()
-        checkIfUserIsLoggedIn() ? observeUserMessages() : perform(#selector(handleUserNotLoggedIn), with: nil, afterDelay: 0.4)
         setupNavigationItems()
         setupActivityIndicator()
     }
@@ -137,15 +142,11 @@ class ConversationsController: UITableViewController, ConversationsControllerDel
     }
     
     //MARK: USER LOGGED IN CHECK
-    func checkIfUserIsLoggedIn() -> Bool  {
+    func checkIfUserIsLoggedIn()  {
         if Auth.auth().currentUser?.uid == nil {
-            isLoggedIn = false
-            perform(#selector(handleLogout), with: nil, afterDelay: 0)
-            return false
+            handleLogout()
         } else {
-            isLoggedIn = true
             fetchUserSetupNavigationBar()
-            return true
         }
     }
     func fetchUserSetupNavigationBar() {
@@ -153,12 +154,10 @@ class ConversationsController: UITableViewController, ConversationsControllerDel
             return
         }
         let ref = FirebaseNode.shared.userNode(toChild: uid)
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.observeSingleEvent(of: .value, with: { [unowned self] (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
-                var user = LocalUser()
-                user.name = dictionary["name"] as? String
-                user.email = dictionary["email"] as? String
-                user.profileImageURL = dictionary["profileImageUrl"] as? String
+                let user = LocalUser(dictionary)
+                
                 self.setupNavigationBar(withUser: user)
             }
         })
@@ -193,12 +192,11 @@ class ConversationsController: UITableViewController, ConversationsControllerDel
         messages.removeAll()
         messagesDictionary.removeAll()
         tableView.reloadData()
+        
         observeUserMessages()
         
-        guard let profileImageURLString = user.profileImageURL else {
-            print("Something went wrong while setting up Navigation Bar")
-            return
-        }
+
+        
         let titleView = UIView()
         titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
         titleView.translatesAutoresizingMaskIntoConstraints = false
@@ -209,7 +207,12 @@ class ConversationsController: UITableViewController, ConversationsControllerDel
         profileImageView?.clipsToBounds = true
         profileImageView?.translatesAutoresizingMaskIntoConstraints = false
         profileImageView?.contentMode = .scaleAspectFill
-        profileImageView?.loadImageUsingCache(withURLString: profileImageURLString)
+        
+        
+        if let url = user.profileImageURL {
+            profileImageView?.loadImageUsingCache(withURLString: url)
+        }
+        
         
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -270,17 +273,9 @@ class ConversationsController: UITableViewController, ConversationsControllerDel
     }
     
     @objc func handleLogout() {
-        
-        do {
-            try Auth.auth().signOut()
-            
-        } catch let logoutError {
-            print(logoutError)
-        }
-        
-        loginController = LoginViewController()
+        FirebaseNode.shared.signOut()
+        loginController = LoginRegisterViewController()
         loginController!.delegate = self
-        isLoggedIn = false
         present(loginController!, animated: true, completion: nil)
     }
 
@@ -320,12 +315,8 @@ extension ConversationsController {
             guard let dictionary = snapshot.value as? [String: AnyObject] else {
                 return
             }
-            var user = LocalUser()
+            var user = LocalUser(dictionary)
             user.id = chatPartnerID
-            user.name = dictionary["name"] as? String
-            user.email = dictionary["email"] as? String
-            user.profileImageURL = dictionary["profileImageUrl"] as? String
-
             self.showChatController(forUser: user)
         }
     }
@@ -342,8 +333,10 @@ extension ConversationsController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let message = messages[indexPath.row]
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         if let chatPartnerID = message.chatPartnerID() {
-            let ref = FirebaseNode.shared.userMessagesNode(toChild: FirebaseNode.currentUserUID, anotherChild: chatPartnerID)
+            let ref = FirebaseNode.shared.userMessagesNode(toChild: uid, anotherChild: chatPartnerID)
             ref.removeValue(completionBlock: { (error, ref) in
                 if let error = error {
                     let errorToast = Toast(text: error.localizedDescription)

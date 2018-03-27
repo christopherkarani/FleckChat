@@ -18,8 +18,16 @@ import SCLAlertView
 
 public class ChatMessageCell: UICollectionViewCell {
     
-    let eventStore = EKEventStore()
-    weak var alertView : SCLAlertView?
+    //MARK: Class Properties
+    internal let eventStore = EKEventStore()
+    internal weak var alertView : SCLAlertView?
+    internal var playerLayer : AVPlayerLayer?
+    internal var bubbleWidthAnchor: NSLayoutConstraint?
+    internal var bubbleViewXAnchor: NSLayoutConstraint?
+    internal var message: Message?
+    internal weak var chatDelegate : ChatControllerDelegate?
+    internal var eventTitleTextfield : UITextField?
+    internal var eventNoteTextField: UITextField?
     
     lazy var appearance = SCLAlertView.SCLAppearance(
         kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
@@ -28,6 +36,9 @@ public class ChatMessageCell: UICollectionViewCell {
         showCloseButton: false,
         hideWhenBackgroundViewIsTapped: false
     )
+    
+    // referance to collectionView controller for later User
+    weak var collectionViewController : UICollectionViewController?
     
     lazy var datePicker : UIDatePicker = {
         let datePicker = UIDatePicker()
@@ -38,8 +49,8 @@ public class ChatMessageCell: UICollectionViewCell {
         return datePicker
     }()
     
+    //Observer that updates datePickerDate property for use in Event Handler
     @objc func datePickerValueChanged(_ sender: UIDatePicker){
-        
         // Create date formatter
         datePickerDate = sender.date
     }
@@ -49,18 +60,6 @@ public class ChatMessageCell: UICollectionViewCell {
             print(datePickerDate!.description)
         }
     }
-    
-    var finishButton: UIButton?
-    
-    internal var bubbleWidthAnchor: NSLayoutConstraint?
-    internal var bubbleViewXAnchor: NSLayoutConstraint?
-    internal var message: Message?
-    internal weak var chatDelegate : ChatControllerDelegate?
-    
-    weak var collectionViewController : UICollectionViewController?
-    
-    var eventTitleTextfield : UITextField?
-    var eventNoteTextField: UITextField?
 
     public var messageLabel: MessageLabel = {
        let messageLabel = MessageLabel()
@@ -110,8 +109,32 @@ public class ChatMessageCell: UICollectionViewCell {
         button.addTarget(self, action: #selector(handlePlay), for: .touchUpInside)
         return button
     }()
-    var playerLayer : AVPlayerLayer?
     
+    
+
+    
+    
+    //MARK: Initialization
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadSubviews()
+        setupConstraints()
+        messageLabel.delegate = self
+        setupGestureRecognizers()
+
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override public func prepareForReuse() {
+        super.prepareForReuse()
+        messageLabel.text = nil
+    }
+    
+    //Target action, handle Play button inside message, in the case of a video
     @objc private func handlePlay() {
         if let videoStringURL = message?.videoUrl {
             guard let url = URL(string: videoStringURL) else { return }
@@ -128,17 +151,17 @@ public class ChatMessageCell: UICollectionViewCell {
     @objc func handleZoom(withTap tap: UITapGestureRecognizer) {
         if let imageView = tap.view as? UIImageView {
             chatDelegate?.performZoom(forStartingImage: imageView)
-        }  
+        }
     }
-
-    func setupConstraints() {
-        
+    
+    //MARK: Methods
+    private func setupConstraints() {
         messageLabel.leftAnchor.constraint(equalTo: bubbleView.leftAnchor, constant: 8).isActive = true
         messageLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         messageLabel.rightAnchor.constraint(equalTo: bubbleView.rightAnchor).isActive = true
         messageLabel.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         messageLabel.centerYAnchor.constraint(equalTo: bubbleView.centerYAnchor).isActive = true
-    
+        
         //BubbleView Constraints
         bubbleViewXAnchor = bubbleView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
         bubbleViewXAnchor?.isActive = true
@@ -164,7 +187,7 @@ public class ChatMessageCell: UICollectionViewCell {
         playButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
     
-    func loadSubviews() {
+    private func loadSubviews() {
         contentView.addSubview(bubbleView)
         contentView.addSubview(messageLabel)
         contentView.addSubview(profileImageView)
@@ -175,35 +198,16 @@ public class ChatMessageCell: UICollectionViewCell {
         bubbleView.addSubview(messageImageView)
         bubbleView.addSubview(playButton)
     }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        loadSubviews()
-        setupConstraints()
-        messageLabel.delegate = self
-        setupGestureRecognizers()
 
-    }
-    
-    override public func prepareForReuse() {
-        super.prepareForReuse()
-        messageLabel.text = nil
-    }
-    
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     func setupGestureRecognizers() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         tapGesture.delaysTouchesBegan = true
         messageLabel.addGestureRecognizer(tapGesture)
     }
     
-    @objc
-    open func handleTapGesture(_ gesture: UIGestureRecognizer) {
+    
+    // add Actionable Gesture to Message Label
+    @objc open func handleTapGesture(_ gesture: UIGestureRecognizer) {
         guard gesture.state == .ended else { return }
         let touchPositon = gesture.location(in: messageLabel)
         messageLabel.handleGesture(touchPositon)
@@ -212,14 +216,7 @@ public class ChatMessageCell: UICollectionViewCell {
 
 // delegate method handling taps to actionable messages
 extension ChatMessageCell: MessageLabelDelegate {
-    
-    
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        collectionViewController?.present(alert, animated: true, completion: nil)
-    }
-    
+
     public func didSelectURL(_ url: URL) {
         let browser = SFSafariViewController(url: url)
         collectionViewController?.present(browser, animated: true, completion: nil)
@@ -232,9 +229,9 @@ extension ChatMessageCell: MessageLabelDelegate {
         callPhoneNumber(phoneNumber: phoneNumber)
     }
     
+    //Handle Message action for Selected Phone Number: present the option to call the selected Phone number
     private func callPhoneNumber(phoneNumber:String) {
         if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
-            
             let application:UIApplication = UIApplication.shared
             if (application.canOpenURL(phoneCallURL)) {
                 if #available(iOS 10.0, *) {
@@ -246,9 +243,10 @@ extension ChatMessageCell: MessageLabelDelegate {
         }
     }
 
-
+    
+    //Handle Message action for Selected Date: present the User Interface when setting Events
     private func setupAlertView(withDate date: Date) {
-        
+        //Setup UI
         let title = "Event"
         let subtitle = "Add an event to your calender"
         let closeButtonTitle = "Finish"
@@ -261,10 +259,8 @@ extension ChatMessageCell: MessageLabelDelegate {
         eventNoteTextField?.translatesAutoresizingMaskIntoConstraints = false
         eventTitleTextfield?.translatesAutoresizingMaskIntoConstraints = false
         
-        
         eventTitleTextfield = alertView.addTextField("Event Title")
         eventNoteTextField = alertView.addTextField("Event Note")
-        
         
         alertView.customSubview = datePicker
         if let customView = alertView.customSubview {
@@ -277,14 +273,14 @@ extension ChatMessageCell: MessageLabelDelegate {
             self.setupEvent(withTitile: eventString, eventNote, date)
             self.alertView?.becomeFirstResponder()
             if self.collectionViewController?.isFirstResponder == false {
-                self.collectionViewController?.becomeFirstResponder()
+                self.collectionViewController?.becomeFirstResponder() // Must return collectionView to first responder
             }
         })
         
         alertView.showInfo(title, subTitle: subtitle, closeButtonTitle: closeButtonTitle, colorStyle: colorStyle, circleIconImage: image, animationStyle: animation)
-
     }
     
+    //Handle Message action for Selected Date: The logic needed to set Events inside IOS Callender
     private func setupEvent(withTitile title: String, _ note: String, _ date: Date) {
         let event:EKEvent = EKEvent(eventStore: eventStore)
         event.title = title
@@ -307,7 +303,8 @@ extension ChatMessageCell: MessageLabelDelegate {
     public func didSelectDate(_ date: Date) {
         setupAlertView(withDate: date)
     }
-
+    
+    //Handle Message action for Selected Address: The logic needed to Open Apple Maps and retrieve specified address
     public func didSelectAddress(_ addressComponents: [String : String]) {
         print(addressComponents)
         let geocoder = CLGeocoder()
@@ -340,28 +337,3 @@ extension ChatMessageCell: MessageLabelDelegate {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

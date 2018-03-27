@@ -10,19 +10,33 @@ import Firebase
 
 class UserCell: UITableViewCell {
     
-    
+    //Message Object used for setting Certain Class Properties
     open var message : Message? {
         didSet {
-            guard let message = message else { return }
-            setupNameAndProfileImage(withMessage: message)
-            checkType(forMessage: message)
-            if let seconds = message.timeStamp {
-                let timeStampDate = Date(timeIntervalSince1970: TimeInterval(seconds))
-                let timeString = Date().timeAgoSinceDate(date: timeStampDate as NSDate, numericDates: false)
-                timeLabel.text = timeString
-            }
+            setupMessage(withMessageObject: message)
         }
     }
+    
+
+
+    
+    open let timeLabel: UILabel = {
+       let timeLabel = UILabel()
+        timeLabel.font = UIFont.systemFont(ofSize: 11)
+        timeLabel.textColor = UIColor.lightGray
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        return timeLabel
+    }()
+    
+    open let profileImageView : UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 24
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
     
     private func checkType(forMessage message: Message) {
         if message.videoUrl != nil {
@@ -45,28 +59,22 @@ class UserCell: UITableViewCell {
                         strongSelf.profileImageView.loadImageUsingCache(withURLString: profileImageUrl)
                     }
                 }
-            }, withCancel: nil)
+                }, withCancel: nil)
         }
     }
     
-    open let timeLabel: UILabel = {
-       let timeLabel = UILabel()
-        timeLabel.font = UIFont.systemFont(ofSize: 11)
-        timeLabel.textColor = UIColor.lightGray
-        timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        return timeLabel
-    }()
+    private func setupMessage(withMessageObject message: Message?) {
+        guard let message = message else { return }
+        setupNameAndProfileImage(withMessage: message)
+        checkType(forMessage: message)
+        if let seconds = message.timeStamp {
+            let timeStampDate = Date(timeIntervalSince1970: TimeInterval(seconds))
+            let timeString = Date().timeAgoSinceDate(date: timeStampDate as NSDate, numericDates: false)
+            timeLabel.text = timeString
+        }
+    }
     
-    open let profileImageView : UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 24
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
     
-
     private func setupConstrainsts() {
         NSLayoutConstraint.activate([
             profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8),

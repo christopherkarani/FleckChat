@@ -9,22 +9,23 @@
 import UIKit
 import Firebase
 
+// Message Object Model Used inside the App
 public struct Message {
-    public var fromID: String?
-    public var text: String?
-    public var timeStamp: Int?
-    public var toID: String?
-    public var imageUrl: String?
-    public var imageWidth: CGFloat?
-    public var imageHeight: CGFloat?
-    public var videoUrl: String?
+    private(set) var fromID: String?
+    private(set) var text: String?
+    private(set) var timeStamp: Int?
+    private(set) var toID: String?
+    private(set) var imageUrl: String?
+    private(set) var imageWidth: CGFloat?
+    private(set) var imageHeight: CGFloat?
+    private(set) var videoUrl: String?
 
     
     func chatPartnerID() -> String? {
         return fromID == Auth.auth().currentUser?.uid ? toID : fromID
     }
     
-    init(dictionary: [String: AnyObject]) {
+    init(dictionary: [String: Any]) {
         self.fromID = dictionary["fromID"] as? String
         self.toID = dictionary["toID"] as? String
         self.text = dictionary["text"] as? String

@@ -1,4 +1,6 @@
 PODS:
+  - Firebase (4.10.1):
+    - Firebase/Core (= 4.10.1)
   - Firebase/Auth (4.10.1):
     - Firebase/Core
     - FirebaseAuth (= 4.4.4)
@@ -53,6 +55,7 @@ PODS:
   - Toaster (2.1.1)
 
 DEPENDENCIES:
+  - Firebase
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
@@ -74,6 +77,6 @@ SPEC CHECKSUMS:
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
 
-PODFILE CHECKSUM: d679a02f3b020ccfe5d48f9eb1f634dd2401ab2f
+PODFILE CHECKSUM: 3704375b25fa46d6da04d798dfbe6e41b516cad8
 
 COCOAPODS: 1.4.0

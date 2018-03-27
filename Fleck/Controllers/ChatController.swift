@@ -296,7 +296,7 @@ extension ChatController: UIImagePickerControllerDelegate, UINavigationControlle
         self.dismiss(animated: true, completion: nil)
             let fileName = "\(UUID().uuidString).mov"
             let ref = Storage.storage().reference().child("Chat_Message_Videos").child(fileName)
-            let uploadTask = ref.putFile(from: url, metadata: nil, completion: { (metadata, error) in
+            let uploadTask = ref.putFile(from: url, metadata: nil, completion: { [unowned self] (metadata, error) in
                 
                 if let error = error {
                     let errorToast = Toast(text: error.localizedDescription)
@@ -345,7 +345,7 @@ extension ChatController: UIImagePickerControllerDelegate, UINavigationControlle
             fatalError("Unable To convert image to data")
         }
         let ref = FirebaseNode.shared.uploadMesaageImageNode(toStorage: true)
-        ref.putData(imageData, metadata: nil) { (metadata, error) in
+        ref.putData(imageData, metadata: nil) { [unowned self] (metadata, error) in
             if let error = error {
                 let errorToast = Toast(text: error.localizedDescription)
                 errorToast.show()
@@ -376,7 +376,7 @@ extension ChatController: UIImagePickerControllerDelegate, UINavigationControlle
         var values: [String : Any] = ["toID": toID, "fromID": fromID, "timestamp": timestamp,]
         properties.forEach({values[$0.key] = $0.value})
                                       
-        childRef.updateChildValues(values) { (error, ref) in
+        childRef.updateChildValues(values) {[unowned self] (error, ref) in
             if let error = error {
                 let errorToast = Toast(text: error.localizedDescription)
                 errorToast.show()

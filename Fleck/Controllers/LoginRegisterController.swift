@@ -9,7 +9,8 @@
 import UIKit
 import Firebase
 
-class LoginViewController : UIViewController {
+// Handles Login and Registeration
+class LoginRegisterViewController : UIViewController {
     
     //MARK: PROPERTIES
     var inputContainerViewHeightAnchor: NSLayoutConstraint?

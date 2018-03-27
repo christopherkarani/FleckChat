@@ -8,9 +8,16 @@
 
 import Foundation
 
+// The User Object used inside The App. 
 public struct LocalUser {
     public var id: String?
-    public var name: String?
-    public var email: String?
-    public var profileImageURL: String?
+    private(set) var name: String?
+    private(set) var email: String?
+    private(set) var profileImageURL: String?
+    
+    init(_ values: [String:Any] ) {
+        name = values["name"] as? String
+        email = values["email"] as? String
+        profileImageURL = values["profileImageUrl"] as? String
+    }
 }

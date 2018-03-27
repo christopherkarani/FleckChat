@@ -78,6 +78,7 @@ public class InputContainerView: UIView {
         addSubview(seperatorLine)
     }
     
+    //MARK: Setup Subview Constraints
     fileprivate func setupConstraints() {
         NSLayoutConstraint.activate([
             imageViewTouchArea.leftAnchor.constraint(equalTo: leftAnchor),

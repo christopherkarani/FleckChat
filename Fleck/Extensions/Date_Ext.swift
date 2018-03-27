@@ -8,6 +8,10 @@
 
 import Foundation
 
+
+//convenience Extension for Formatting Date into a User Friendly Format
+//check out: https://gist.github.com/xrisyz/659cc0bc39e5328218af631f2e01d75f
+
 extension Date {
     func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
         let calendar = NSCalendar.current

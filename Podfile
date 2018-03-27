@@ -12,5 +12,10 @@ pod 'Firebase/Storage'
 pod 'Toaster'
 pod 'SCLAlertView'
 
-
+target 'FleckUnitTests' do
+inherit! :search_paths
+pod 'Firebase'
 end
+end
+
+

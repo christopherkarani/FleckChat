@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D54D18CB76D57992578D0FC62D05BA07"
-               BuildableName = "Pods_Fleck.framework"
-               BlueprintName = "Pods-Fleck"
+               BlueprintIdentifier = "433E90BF6136E433A0FEA61CD4159E56"
+               BuildableName = "GoogleToolboxForMac.framework"
+               BlueprintName = "GoogleToolboxForMac-Defines-NSData+zlib"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D54D18CB76D57992578D0FC62D05BA07"
-            BuildableName = "Pods_Fleck.framework"
-            BlueprintName = "Pods-Fleck"
+            BlueprintIdentifier = "433E90BF6136E433A0FEA61CD4159E56"
+            BuildableName = "GoogleToolboxForMac.framework"
+            BlueprintName = "GoogleToolboxForMac-Defines-NSData+zlib"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

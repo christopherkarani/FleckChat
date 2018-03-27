@@ -21,14 +21,19 @@ extension UIImageView {
             self.image = cachedImage
             return
         }
+        //if image is not in cache, run data task
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
             if error != nil {
                 print(error!)
+                return
             }
+            //return to the main thread
             DispatchQueue.main.async {
-                if let downloadedImage =  UIImage(data: data!) {
-                    imageCache.setObject(downloadedImage, forKey: urlString as NSString)
-                    self.image = downloadedImage
+                if let data = data  {
+                    if let downloadedImage =  UIImage(data: data) {
+                        imageCache.setObject(downloadedImage, forKey: urlString as NSString)
+                        self.image = downloadedImage
+                    }
                 }
             }
         }).resume()

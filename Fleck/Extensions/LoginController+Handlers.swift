@@ -11,7 +11,7 @@ import Firebase
 import Toaster
 
 //ImagePicker Extension
-extension LoginViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension LoginRegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: Handle ImagePicker
     @objc public func handleProfileImagePicker() {
@@ -40,7 +40,7 @@ extension LoginViewController: UIImagePickerControllerDelegate, UINavigationCont
 }
 
 //MARK: handle Login/Register
-extension LoginViewController {
+extension LoginRegisterViewController {
     
     @objc public func handleLoginRegister() {
         loginRegisterButton.setTitle(nil, for: .normal)
@@ -68,15 +68,16 @@ extension LoginViewController {
         Auth.auth().signIn(withEmail: email, password: password) { [unowned self] (user, error) in
             if let error = error {
                 self.activityIndicatorView.stopAnimating()
+                self.loginRegisterButton.setTitle(self.loginRegisterButtonTittle, for: .normal)
                 let errorToast = Toast(text: error.localizedDescription)
                 errorToast.show()
                 return
             }
             
             self.delegate?.fetchUserSetupNavigationBar()
-            self.dismiss(animated: true, completion: { [unowned self] in
-                self.activityIndicatorView.stopAnimating()
-                self.loginRegisterButton.setTitle(self.loginRegisterButtonTittle, for: .normal)
+            self.dismiss(animated: true, completion: { [weak self] in
+                self?.activityIndicatorView.stopAnimating()
+                self?.loginRegisterButton.setTitle(self?.loginRegisterButtonTittle, for: .normal)
             })
         }
     }
@@ -85,7 +86,7 @@ extension LoginViewController {
         activityIndicatorView.stopAnimating()
     }
     
-    //MARK: HandleRegister
+    //MARK: Handle Registration
     internal func handleRegister() {
         guard let email = emailTextField.text else {
             let toast = Toast(text: "Enter Email")
@@ -103,12 +104,16 @@ extension LoginViewController {
             return
         }
         
+        
+        //Create Users for Authentication Purposes
         Auth.auth().createUser(withEmail: email, password: password) { [unowned self] (user: User?, error) in
             if let error = error {
                 let toast = Toast(text: error.localizedDescription)
                 toast.show()
-                self.activityIndicatorView.stopAnimating()
-                self.loginRegisterButton.setTitle("Register", for: .normal)
+                DispatchQueue.main.async { [unowned self] in
+                    self.activityIndicatorView.stopAnimating()
+                    self.loginRegisterButton.setTitle("Register", for: .normal)
+                }
                 return
             }
             
@@ -125,7 +130,7 @@ extension LoginViewController {
                     
             }
             let storageRef = FirebaseNode.shared.profileImagesStorageRef(toStoragePath: true)
-            storageRef.putData(uploadData, metadata: nil, completion: { [unowned self] (metadata, error) in
+            storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                 if let error = error {
                     let toast = Toast(text: error.localizedDescription)
                     toast.show()
@@ -155,10 +160,7 @@ extension LoginViewController {
                 return
             }
 
-            var user = LocalUser()
-            user.name = values["name"]
-            user.email = values["email"]
-            user.profileImageURL = values["profileImageURL"]
+            let user = LocalUser(values as [String : AnyObject])
             self.delegate?.setupNavigationBar(withUser: user)
             //self.dismiss(animated: true, completion: nil)
             self.dismiss(animated: true, completion: {
@@ -177,7 +179,8 @@ extension LoginViewController {
         }
     }
     
-    /// handles the functionality of the segmented controller
+    // handles the logic of the segmentController, updating constraints based on the selected segement
+    // 0 = Login, 1 = Register
     @objc internal func handleLoginRegisterSegmentChange() {
         let selectedIndex = loginRegisterSegementedControl.selectedSegmentIndex
         
@@ -223,7 +226,7 @@ extension LoginViewController {
     }
 }
 
-extension LoginViewController {
+extension LoginRegisterViewController {
     //MARK: CONSTRAINTS
     internal func handleConstraints() {
         NSLayoutConstraint.activate([
@@ -256,9 +259,7 @@ extension LoginViewController {
             loginRegisterSegementedControl.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor),
             loginRegisterSegementedControl.heightAnchor.constraint(equalToConstant: 35)
             ])
-        
-        
-        
+
         NSLayoutConstraint.activate([
             nameTextField.leftAnchor.constraint(equalTo: inputContainerView.leftAnchor, constant: 12),
             nameTextField.topAnchor.constraint(equalTo: inputContainerView.topAnchor),
